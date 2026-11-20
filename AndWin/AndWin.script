@@ -1,0 +1,34 @@
+// --- CONFIGURACIÓN ---
+total_frames = 90;       // Cambia esto por tu cantidad exacta de imágenes
+prefix = "image_";       // Texto antes del número de tus PNG
+// ---------------------
+
+// Fondo negro
+Window.SetBackgroundTopColor(0.0, 0.0, 0.0);
+Window.SetBackgroundBottomColor(0.0, 0.0, 0.0);
+
+// Cargar todas las imágenes en memoria (image_00.png hasta image_89.png)
+for (i = 0; i < total_frames; i++) {
+    if (i < 10) {
+        flying_man_image[i] = Image(prefix + "0" + i + ".png");
+    } else {
+        flying_man_image[i] = Image(prefix + i + ".png");
+    }
+}
+
+flying_man_sprite = Sprite();
+
+// Centrar la animación en la pantalla
+flying_man_sprite.SetX(Window.GetWidth() / 2 - flying_man_image[0].GetWidth() / 2);
+flying_man_sprite.SetY(Window.GetHeight() / 2 - flying_man_image[0].GetHeight() / 2);
+
+progress = 0;
+
+fun refresh_callback () {
+    // Plymouth corre a ~50 FPS; dividir entre 2 hace que vaya a ~25 FPS
+    frame = Math.Int(progress / 2) % total_frames;
+    flying_man_sprite.SetImage(flying_man_image[frame]);
+    progress++;
+}
+
+Plymouth.SetRefreshFunction(refresh_callback);

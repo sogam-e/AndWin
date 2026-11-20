@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=Arranque AndWin
+Description=Pantalla de arranque similar a Android y Windows
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/AndWin
+ScriptFile=/usr/share/plymouth/themes/AndWin/AndWin.script
